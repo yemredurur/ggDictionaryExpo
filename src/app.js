@@ -6,8 +6,20 @@ import firebase from 'firebase';
 import ReduxThunk from 'redux-thunk';
 import reducers from './reducers';
 import {Header, Button, Spinner} from './components/common';
-/*import Router from './Router';*/
+import { createRouter, NavigationProvider, StackNavigation } from '@expo/ex-navigation';
+
 import LoginForm from './components/LoginForm';
+import PageList from './components/PageList';
+import PageCreate from './components/PageCreate';
+import PageEdit from './components/PageEdit';
+
+export const Router = createRouter(() => ({
+    login: () => LoginForm,
+    pageList: () => PageList,
+    pageCreate: () => PageCreate,
+    pageEdit: () => PageEdit
+}));
+
 class App extends Component {
 
     componentWillMount() {
@@ -26,7 +38,9 @@ class App extends Component {
         const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
         return (
             <Provider store={store}>
-                <LoginForm />
+                <NavigationProvider router={Router}>
+                    <StackNavigation initialRoute="login" />
+                </NavigationProvider>
             </Provider>
         )
     }

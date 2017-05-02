@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { Actions } from 'react-native-router-flux';
+//import { Actions } from 'react-native-router-flux';
 import { Text, TouchableOpacity, View } from 'react-native';
 import { CardSection, ContainerSection } from './common';
 
 class ListItem extends  Component {
     onRowPress() {
-        Actions.pageEdit({ page: this.props.pages });
+        //Actions.pageEdit({ page: this.props.pages });
     }
 
     render() {

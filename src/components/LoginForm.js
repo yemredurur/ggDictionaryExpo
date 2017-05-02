@@ -6,6 +6,18 @@ import { emailChanged, passwordChanged, loginUser } from '../actions';
 import {Button, Card, CardSection, Input, Spinner} from './common';
 
 class LoginForm extends Component {
+    /**
+     * This is where we can define any route configuration for this
+     * screen. For example, in addition to the navigationBar title we
+     * could add backgroundColor.
+     */
+    static route = {
+        navigationBar: {
+            title: 'Login',
+            tintColor: '#000',
+        },
+    };
+
     onEmailChange(text) {
         this.props.emailChanged(text);
     }
