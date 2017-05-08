@@ -1,5 +1,8 @@
 import firebase from 'firebase';
 /*import { Actions } from 'react-native-router-flux';*/
+import { NavigationActions } from '@expo/ex-navigation'
+import Store from '../Store';
+import Router from '../Router'
 
 import {
     EMAIL_CHANGED,
@@ -56,5 +59,18 @@ const loginUserSucces = (dispatch, user) => {
         payload: user
     });
 
-    //Actions.main();
+    let navigatorUID = Store.getState().navigation.currentNavigatorUID;
+    console.log(navigatorUID);
+    //NavigationActions.push(navigatorUID, Router.getRoute('pageList'));
+
+    /*
+
+
+    const nav = NavigationActions.navigate({
+        routeName: 'PageList',
+        type: LOGIN_USER_SUCCESS,
+        payload: user
+    });
+    dispatch(nav);
+    Actions.main();*/
 };

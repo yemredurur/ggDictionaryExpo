@@ -4,6 +4,7 @@ import firebase from 'firebase';
 import { connect } from 'react-redux';
 import { emailChanged, passwordChanged, loginUser } from '../actions';
 import {Button, Card, CardSection, Input, Spinner} from './common';
+import { Router, Store } from '../app';
 
 class LoginForm extends Component {
     /**
@@ -15,9 +16,9 @@ class LoginForm extends Component {
         navigationBar: {
             title: 'Login',
             tintColor: '#000',
+            color: '#000',
         },
     };
-
     onEmailChange(text) {
         this.props.emailChanged(text);
     }
@@ -41,6 +42,10 @@ class LoginForm extends Component {
             </Button>
         );
     }
+
+    _goToScreen = name => () => {
+        this.props.navigator.push(Router.getRoute(name));
+    };
 
     render() {
         return (
