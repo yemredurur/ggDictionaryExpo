@@ -52,7 +52,6 @@ fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots
 /.buckconfig
-/.babelrc
 /.gitattributes
 /.watchmanconfig
 /.flowconfig
