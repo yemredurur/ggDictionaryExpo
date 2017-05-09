@@ -59,8 +59,10 @@ const loginUserSucces = (dispatch, user) => {
         payload: user
     });
 
+    console.log(user);
+    /*
     let navigatorUID = Store.getState().navigation.currentNavigatorUID;
-    console.log(navigatorUID);
+
     //NavigationActions.push(navigatorUID, Router.getRoute('pageList'));
 
     /*

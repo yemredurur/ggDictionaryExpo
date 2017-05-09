@@ -3,7 +3,8 @@ import { Text } from 'react-native';
 import firebase from 'firebase';
 import { connect } from 'react-redux';
 import { emailChanged, passwordChanged, loginUser } from '../actions';
-import {Button, Card, CardSection, Input, Spinner} from './common';
+import {CardSection, Input, Spinner} from './common';
+import {Card, Button} from 'react-native-elements';
 import { Router, Store } from '../app';
 
 class LoginForm extends Component {
@@ -37,9 +38,7 @@ class LoginForm extends Component {
             return <Spinner size="large" />;
         }
         return (
-            <Button onPress={this.onButtonPress.bind(this)}>
-                Login
-            </Button>
+            <Button onPress={this.onButtonPress.bind(this)} large backgroundColor="#2c98f1" title='Giriş Yap' />
         );
     }
 
@@ -50,16 +49,13 @@ class LoginForm extends Component {
     render() {
         return (
             <Card>
-                <CardSection>
+
                     <Input
                         label="E-mail"
                         placeholder="email@gmail.com"
                         onChangeText={this.onEmailChange.bind(this)}
                         value={this.props.email}
                     />
-                </CardSection>
-
-                <CardSection>
                     <Input
                         secureTextEntry
                         label="Password"
@@ -67,15 +63,13 @@ class LoginForm extends Component {
                         onChangeText={this.onPasswordChange.bind(this)}
                         value={this.props.password}
                     />
-                </CardSection>
 
                 <Text style={styles.errorTextStyle}>
                     {this.props.error}
                 </Text>
 
-                <CardSection>
-                    {this.renderButton()}
-                </CardSection>
+
+                {this.renderButton()}
             </Card>
         )
     }

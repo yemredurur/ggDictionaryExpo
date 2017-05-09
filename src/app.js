@@ -4,7 +4,6 @@ import { Provider as ReduxProvider, connect } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import firebase from 'firebase';
 import reducers from './reducers';
-import {Header, Button, Spinner} from './components/common';
 import {
     NavigationContext,
     NavigationProvider,
