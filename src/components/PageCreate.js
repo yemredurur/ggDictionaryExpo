@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import  { pageUpdate, pageCreate } from '../actions';
-import { Card, CardSection, Button } from './common';
+import { CardSection } from './common';
 import PageForm from './PageForm';
-
+import {Card, Button} from 'react-native-elements';
 
 class PageCreate extends Component {
 
     componentWillMount() {
-        console.log('componentWillMount ');
+        //console.log('componentWillMount ');
     }
 
     onButtonPress() {
@@ -20,16 +20,13 @@ class PageCreate extends Component {
         return (
             <Card>
                 <PageForm {...this.props} />
-                <CardSection>
-                    <Button onPress={this.onButtonPress.bind(this)}>Create</Button>
-                </CardSection>
+                <Button buttonStyle={{marginTop: 20}} onPress={this.onButtonPress.bind(this)} large backgroundColor="#2c98f1" title="Create" />
             </Card>
         )
     }
 }
 
 const mapStateToProps = ({ pageForm }) => {
-    console.log(pageForm);
     const { title, description, type } = pageForm;
     return { title, description, type };
 };

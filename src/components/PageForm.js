@@ -2,30 +2,35 @@ import React, { Component } from 'react';
 import { View, Text, Picker } from 'react-native';
 import { CardSection, Input, Button } from './common';
 import { connect } from 'react-redux';
+import {Card} from 'react-native-elements';
 import  { pageUpdate, pageCreate } from '../actions';
 
 class PageForm extends Component {
+    static route = {
+        navigationBar: {
+            title: 'Yeni Sayfa',
+            tintColor: '#000',
+            color: '#000',
+        },
+    };
+
     render() {
         return (
             <View>
-                <CardSection>
-                    <Input
-                        label="Page Title"
-                        placeholder="Title"
-                        value={this.props.title}
-                        onChangeText={value => this.props.pageUpdate({ prop: 'title', value })}
-                    />
-                </CardSection>
+                <Input
+                    label="Page Title"
+                    placeholder="Title"
+                    value={this.props.title}
+                    onChangeText={value => this.props.pageUpdate({ prop: 'title', value })}
+                />
 
-                <CardSection>
-                    <Input
-                        label="Page Detail"
-                        placeholder="Details about the page"
-                        multiline={true}
-                        value={this.props.description}
-                        onChangeText={value => this.props.pageUpdate({ prop: 'description', value })}
-                    />
-                </CardSection>
+                <Input
+                    label="Page Detail"
+                    placeholder="Details about the page"
+                    multiline={true}
+                    value={this.props.description}
+                    onChangeText={value => this.props.pageUpdate({ prop: 'description', value })}
+                />
 
                 <CardSection>
                     <Text style={styles.pickerLabelStyle}>Page Type</Text>

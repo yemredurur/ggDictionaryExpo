@@ -4,9 +4,16 @@ import { ListView, View } from 'react-native';
 import { connect } from 'react-redux';
 import { pagesFetch, logoutUser } from '../actions';
 import { List, ListItem } from 'react-native-elements'
-import {Button} from 'react-native-elements';
+import { SearchBar, Button } from 'react-native-elements';
 
 class PageList extends Component {
+    static route = {
+        navigationBar: {
+            title: 'Sayfa Listesi',
+            tintColor: '#000',
+            color: '#000',
+        },
+    };
     componentWillMount(){
         this.props.pagesFetch();
 
@@ -47,6 +54,12 @@ class PageList extends Component {
     render() {
         return (
             <View>
+                <View style={{marginTop: 10, marginBottom: 0}}>
+                    <SearchBar
+                        lightTheme
+                        clearIcon
+                        placeholder='Ara...' />
+                </View>
                 <List>
                     <ListView
                         enableEmptySections
@@ -54,7 +67,7 @@ class PageList extends Component {
                         renderRow={this.renderRow}
                     />
                 </List>
-                <Button buttonStyle={{marginTop: 20}} onPress={this.logoutUser.bind(this)} large backgroundColor="#2c98f1" title="Çıkış Yap" />
+                <Button buttonStyle={{marginTop:20}} onPress={this.logoutUser.bind(this)} large backgroundColor="#2c98f1" title="Çıkış Yap" />
             </View>
         )
     }

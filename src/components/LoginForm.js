@@ -15,7 +15,7 @@ class LoginForm extends Component {
      */
     static route = {
         navigationBar: {
-            title: 'Login',
+            title: 'Giriş Yap',
             tintColor: '#000',
             color: '#000',
         },
