@@ -3,8 +3,8 @@ import _ from 'lodash';
 import { ListView, View } from 'react-native';
 import { connect } from 'react-redux';
 import { pagesFetch, logoutUser } from '../actions';
-import ListItem from './ListItem';
-import {Button, CardSection} from './common';
+import { List, ListItem } from 'react-native-elements'
+import {Button} from 'react-native-elements';
 
 class PageList extends Component {
     componentWillMount(){
@@ -27,8 +27,17 @@ class PageList extends Component {
         this.dataSource = ds.cloneWithRows(pages);
     }
 
-    renderRow(pages) {
-        return <ListItem pages={pages} />
+
+    renderRow (rowData, sectionID) {
+        return (
+            <ListItem
+                roundAvatar
+                key={sectionID}
+                title={rowData.title}
+                subtitle={rowData.type}
+                avatar={{uri:"https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg"}}
+            />
+        )
     }
 
     logoutUser() {
@@ -38,16 +47,14 @@ class PageList extends Component {
     render() {
         return (
             <View>
-                <ListView
-                    enableEmptySections
-                    dataSource={this.dataSource}
-                    renderRow={this.renderRow}
-                />
-                <CardSection>
-                    <Button onPress={this.logoutUser.bind(this)}>
-                        Log Out
-                    </Button>
-                </CardSection>
+                <List>
+                    <ListView
+                        enableEmptySections
+                        dataSource={this.dataSource}
+                        renderRow={this.renderRow}
+                    />
+                </List>
+                <Button buttonStyle={{marginTop: 20}} onPress={this.logoutUser.bind(this)} large backgroundColor="#2c98f1" title="Çıkış Yap" />
             </View>
         )
     }

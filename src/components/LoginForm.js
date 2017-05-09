@@ -38,7 +38,7 @@ class LoginForm extends Component {
             return <Spinner size="large" />;
         }
         return (
-            <Button onPress={this.onButtonPress.bind(this)} large backgroundColor="#2c98f1" title='Giriş Yap' />
+            <Button onPress={this.onButtonPress.bind(this)} large backgroundColor="#2c98f1" title="Giriş Yap" />
         );
     }
 
@@ -49,25 +49,23 @@ class LoginForm extends Component {
     render() {
         return (
             <Card>
-
-                    <Input
-                        label="E-mail"
-                        placeholder="email@gmail.com"
-                        onChangeText={this.onEmailChange.bind(this)}
-                        value={this.props.email}
-                    />
-                    <Input
-                        secureTextEntry
-                        label="Password"
-                        placeholder="password"
-                        onChangeText={this.onPasswordChange.bind(this)}
-                        value={this.props.password}
-                    />
+                <Input
+                    label="E-mail"
+                    placeholder="email@gmail.com"
+                    onChangeText={this.onEmailChange.bind(this)}
+                    value={this.props.email}
+                />
+                <Input
+                    secureTextEntry
+                    label="Password"
+                    placeholder="password"
+                    onChangeText={this.onPasswordChange.bind(this)}
+                    value={this.props.password}
+                />
 
                 <Text style={styles.errorTextStyle}>
                     {this.props.error}
                 </Text>
-
 
                 {this.renderButton()}
             </Card>
