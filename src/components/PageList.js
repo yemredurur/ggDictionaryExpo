@@ -35,6 +35,10 @@ class PageList extends Component {
     }
 
 
+    goToPageDetail = (page) => () => {
+        this.props.navigator.push('pageEdit', {page: page } );
+    }
+
     renderRow (rowData, sectionID) {
         return (
             <ListItem
@@ -43,6 +47,7 @@ class PageList extends Component {
                 title={rowData.title}
                 subtitle={rowData.type}
                 avatar={{uri:"https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg"}}
+                onPress={this.goToPageDetail(rowData)}
             />
         )
     }
@@ -66,8 +71,9 @@ class PageList extends Component {
                         dataSource={this.dataSource}
                         renderRow={this.renderRow}
                     />
-                </List>
+
                 <Button buttonStyle={{marginTop:20}} onPress={this.logoutUser.bind(this)} large backgroundColor="#2c98f1" title="Çıkış Yap" />
+                </List>
             </View>
         )
     }

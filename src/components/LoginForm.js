@@ -49,10 +49,6 @@ class LoginForm extends Component {
         );
     }
 
-    _goToScreen = name => () => {
-        this.props.navigator.push(Router.getRoute(name));
-    };
-
     render() {
         return (
             <Card>
