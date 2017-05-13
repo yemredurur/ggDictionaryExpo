@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View }  from 'react-native';
-import { Provider as ReduxProvider, connect } from 'react-redux';
+import { Provider , connect } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import firebase from 'firebase';
 import reducers from './reducers';
@@ -17,7 +17,6 @@ const navigationContext = new NavigationContext({
   router: Router,
   store: Store
 });
-
 //const Store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
 
 class App extends Component {
@@ -36,10 +35,17 @@ class App extends Component {
 
     render() {
         return (
+            /*
+            <Provider store={Store}>
+                <NavigationProvider context={navigationContext}>
+                    <StackNavigation initialRoute="login" />
+                </NavigationProvider>
+            </Provider>
+             */
             <NavigationProvider router={Router}>
-                <ReduxProvider store={Store}>
+                <Provider store={Store}>
                     <StackNavigation initialRoute={Router.getRoute('login')} />
-                </ReduxProvider>
+                </Provider>
             </NavigationProvider>
         )
     }

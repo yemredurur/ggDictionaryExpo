@@ -20,6 +20,13 @@ class LoginForm extends Component {
             color: '#000',
         },
     };
+
+    componentWillReceiveProps(nextProps){
+        if (nextProps.success) {
+            this.props.navigator.push('pageList');
+        }
+    }
+
     onEmailChange(text) {
         this.props.emailChanged(text);
     }
@@ -82,8 +89,8 @@ const styles = {
 };
 
 const mapStateToProps = ({ auth }) => {
-    const { email, password, error, loading } = auth;
-    return { email, password, error, loading };
+    const { email, password, error, loading, success } = auth;
+    return { email, password, error, loading, success };
 };
 
 export default connect(mapStateToProps, {

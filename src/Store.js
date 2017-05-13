@@ -13,12 +13,13 @@ const createStoreWithNavigation = createNavigationEnabledStore({
 });
 
 /*
-const Store = createStoreWithNavigation(
+export default Store = createStoreWithNavigation(
     combineReducers({
         auth: AuthReducer,
         pageForm: PageFormReducer,
         pages: PageReducer
     })
 );
-*/
+ */
+
 export default Store = createStoreWithNavigation(reducers, {}, applyMiddleware(ReduxThunk));
