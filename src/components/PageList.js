@@ -3,8 +3,7 @@ import _ from 'lodash';
 import { ListView, View } from 'react-native';
 import { connect } from 'react-redux';
 import { pagesFetch, logoutUser } from '../actions';
-import { List, ListItem } from 'react-native-elements'
-import { SearchBar, Button } from 'react-native-elements';
+import { List, ListItem , SearchBar, Button } from 'react-native-elements';
 
 class PageList extends Component {
     static route = {
@@ -35,11 +34,14 @@ class PageList extends Component {
     }
 
 
-    goToPageDetail = (page) => () => {
+    goToPageDetail({ page }) {
+        console.log(1);
+        console.log(page);
         this.props.navigator.push('pageEdit', {page: page } );
     }
 
     renderRow (rowData, sectionID) {
+        const _this = this;
         return (
             <ListItem
                 roundAvatar
@@ -47,7 +49,7 @@ class PageList extends Component {
                 title={rowData.title}
                 subtitle={rowData.type}
                 avatar={{uri:"https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg"}}
-                onPress={this.goToPageDetail(rowData)}
+                onPress={() => { console.log(rowData); }}
             />
         )
     }
