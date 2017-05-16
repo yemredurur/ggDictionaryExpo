@@ -13,7 +13,8 @@ const INITIAL_STATE = {
     error: '',
     user: null,
     loading: false,
-    success: false
+    success: false,
+    logout: false,
 };
 
 export  default (state = INITIAL_STATE, action) => {
@@ -29,7 +30,7 @@ export  default (state = INITIAL_STATE, action) => {
         case LOGIN_USER:
             return { ...state, loading: true, error: ''};
         case LOGOUT_USER:
-            return { ...state, ...INITIAL_STATE};
+            return { ...state, ...INITIAL_STATE, logout: true };
         default:
             return state;
 

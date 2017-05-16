@@ -12,14 +12,4 @@ const createStoreWithNavigation = createNavigationEnabledStore({
     navigationStateKey: 'navigation'
 });
 
-/*
-export default Store = createStoreWithNavigation(
-    combineReducers({
-        auth: AuthReducer,
-        pageForm: PageFormReducer,
-        pages: PageReducer
-    })
-);
- */
-
 export default Store = createStoreWithNavigation(reducers, {}, applyMiddleware(ReduxThunk));

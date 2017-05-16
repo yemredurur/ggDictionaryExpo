@@ -19,10 +19,13 @@ class PageList extends Component {
         this.createDataSource(this.props);
     }
 
-    componentWillReceiveProps(nextProps) {
+    componentWillReceiveProps(nextProps){
         // nextProps are the new set of props that this component will be rendered with
         // this.props is still the old set of props
         this.createDataSource(nextProps);
+        if (nextProps.logout) {
+            this.props.navigator.push('login');
+        }
     }
 
     createDataSource({ pages }) {
@@ -31,17 +34,9 @@ class PageList extends Component {
         });
 
         this.dataSource = ds.cloneWithRows(pages);
-    }
-
-
-    goToPageDetail({ page }) {
-        console.log(1);
-        console.log(page);
-        this.props.navigator.push('pageEdit', {page: page } );
-    }
+    }xx
 
     renderRow (rowData, sectionID) {
-        const _this = this;
         return (
             <ListItem
                 roundAvatar
@@ -49,9 +44,13 @@ class PageList extends Component {
                 title={rowData.title}
                 subtitle={rowData.type}
                 avatar={{uri:"https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg"}}
-                onPress={() => { console.log(rowData); }}
+                onPress={() => this.goToPageDetail(rowData)}
             />
         )
+    }
+
+    goToPageDetail(page){
+        this.props.navigator.push('pageEdit', {page: page } );
     }
 
     logoutUser() {
@@ -71,7 +70,7 @@ class PageList extends Component {
                     <ListView
                         enableEmptySections
                         dataSource={this.dataSource}
-                        renderRow={this.renderRow}
+                        renderRow={this.renderRow.bind(this)}
                     />
 
                 <Button buttonStyle={{marginTop:20}} onPress={this.logoutUser.bind(this)} large backgroundColor="#2c98f1" title="Çıkış Yap" />
