@@ -3,6 +3,7 @@ import _ from 'lodash';
 import { ListView, View } from 'react-native';
 import { connect } from 'react-redux';
 import { pagesFetch, logoutUser } from '../actions';
+import { Spinner} from './common';
 import { List, ListItem , SearchBar, Button } from 'react-native-elements';
 
 class PageList extends Component {
@@ -50,11 +51,20 @@ class PageList extends Component {
     }
 
     goToPageDetail(page){
-        this.props.navigator.push('pageEdit', {page: page } );
+        this.props.navigator.push('pageView', {page: page } );
     }
 
     logoutUser() {
         this.props.logoutUser();
+    }
+
+    renderButton() {
+        if (this.props.loading) {
+            return <Spinner size="large" />;
+        }
+        return (
+            <Button buttonStyle={{marginTop:20}} onPress={this.logoutUser.bind(this)} large backgroundColor="#2c98f1" title="Çıkış Yap" />
+        );
     }
 
     render() {
@@ -72,9 +82,8 @@ class PageList extends Component {
                         dataSource={this.dataSource}
                         renderRow={this.renderRow.bind(this)}
                     />
-
-                <Button buttonStyle={{marginTop:20}} onPress={this.logoutUser.bind(this)} large backgroundColor="#2c98f1" title="Çıkış Yap" />
                 </List>
+                {this.renderButton()}
             </View>
         )
     }

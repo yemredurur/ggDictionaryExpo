@@ -9,6 +9,13 @@ import PageForm from './PageForm';
 
 
 class PageEdit extends Component {
+    static route = {
+        navigationBar: {
+            title: 'Sayfa Güncelleme',
+            tintColor: '#000',
+            color: '#000',
+        },
+    };
     state = { showModal: false };
 
     componentWillMount() {
