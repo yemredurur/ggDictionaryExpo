@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
-import { ListView, View } from 'react-native';
+import { ListView, View, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import { pagesFetch, logoutUser } from '../actions';
 import { Spinner} from './common';
 import { List, ListItem , SearchBar, Button } from 'react-native-elements';
+import { Ionicons } from '@expo/vector-icons';
 
 class PageList extends Component {
     static route = {
@@ -12,6 +13,11 @@ class PageList extends Component {
             title: 'Sayfa Listesi',
             tintColor: '#000',
             color: '#000',
+            renderRight: (route, props) =>  (
+                <TouchableOpacity onPress={() => console.log(props,route) }>
+                    <Ionicons style={styles.exitIcon} size={24} name="md-exit" />
+                </TouchableOpacity>
+            )
         },
     };
     componentWillMount(){
@@ -86,6 +92,14 @@ class PageList extends Component {
                 {this.renderButton()}
             </View>
         )
+    }
+}
+
+const styles = {
+    exitIcon: {
+        color: '#00a8d8',
+        paddingRight: 10,
+        paddingTop: 10
     }
 }
 

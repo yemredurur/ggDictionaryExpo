@@ -1,23 +1,57 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
 import { connect } from 'react-redux';
-import { View, Text } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import  { pageUpdate, pageSave, pageDelete } from '../actions';
 import { Card, CardSection, Button, Confirm } from './common';
 import { Avatar } from 'react-native-elements';
 import { Foundation } from '@expo/vector-icons';
 
+/*
+@connect()
+class EditButton extends Component {
+    goToPageEdit(page){
+        this.props.navigator.push('pageEdit', {page: page } );
+    }
+    render() {
+        const pageItem = this.props.page;
+        return (
+            <TouchableOpacity onPress={this.goToPageEdit({pageItem})}>
+                <Foundation style={styles.pageEditIcon} size={24} name="page-edit" />
+            </TouchableOpacity>
+        );
+    }
+}
+@connect()
+*/
 
 class PageView extends Component {
+    state = { showModal: false };
+
     static route = {
         navigationBar: {
             title: '10:30',
             tintColor: '#000',
             color: '#000',
-            renderRight: (route, props) =>  <Foundation style={styles.pageEditIcon} size={24} name="page-edit" />
+            renderRight: (route, props) =>  (
+                <TouchableOpacity onPress={() => console.log(props,route) }>
+                    <Foundation style={styles.pageEditIcon} size={24} name="page-edit" />
+                </TouchableOpacity>
+            )
         }
     };
-    state = { showModal: false };
+
+    goToPageEdit(page){
+        this.props.navigator.push('pageEdit', {page: page } );
+    }
+    renderEditButton(){
+        const pageItem = this.props.page;
+        return (
+            <TouchableOpacity onPress={this.goToPageEdit({pageItem})}>
+                <Foundation style={styles.pageEditIcon} size={24} name="page-edit" />
+            </TouchableOpacity>
+        );
+    }
 
     componentWillMount() {
         _.each(this.props.page, (value, prop) => {
