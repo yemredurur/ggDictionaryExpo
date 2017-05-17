@@ -9,7 +9,8 @@ import {
 const INITIAL_STATE = {
     title: '',
     description: '',
-    type: ''
+    type: '',
+    saved: false
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -21,7 +22,9 @@ export default (state = INITIAL_STATE, action) => {
         case PAGES_FETCH_SUCCESS:
             return INITIAL_STATE;
         case PAGE_DELETE_SUCCESS:
-            return INITIAL_STATE;
+            return { ...state, ...INITIAL_STATE, saved: true };
+        case PAGE_SAVE_SUCCESS:
+            return { ...state, ...INITIAL_STATE, saved: true };
         default:
             return state;
     }

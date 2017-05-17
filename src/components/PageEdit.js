@@ -24,6 +24,12 @@ class PageEdit extends Component {
         });
     }
 
+    componentWillReceiveProps(nextProps){
+        if (nextProps.saved) {
+            this.props.navigator.push('pageList');
+        }
+    }
+
     onButtonPress() {
         const { title, description, type } = this.props;
         this.props.pageSave({ title, description, type , uid: this.props.page.uid });
@@ -77,8 +83,8 @@ class PageEdit extends Component {
 
 
 const mapStateToProps = ({ pageForm }) => {
-    const { title, description, type } = pageForm;
-    return { title, description, type };
+    const { title, description, type, saved } = pageForm;
+    return { title, description, type, saved };
 };
 
 export default connect(mapStateToProps, {

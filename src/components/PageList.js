@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { pagesFetch, logoutUser } from '../actions';
 import { Spinner} from './common';
 import { List, ListItem , SearchBar, Button } from 'react-native-elements';
-import { Ionicons } from '@expo/vector-icons';
+import LogOutButton from './navigation-buttons/LogOutButton';
 
 class PageList extends Component {
     static route = {
@@ -13,12 +13,8 @@ class PageList extends Component {
             title: 'Sayfa Listesi',
             tintColor: '#000',
             color: '#000',
-            renderRight: (route, props) =>  (
-                <TouchableOpacity onPress={() => console.log(props,route) }>
-                    <Ionicons style={styles.exitIcon} size={24} name="md-exit" />
-                </TouchableOpacity>
-            )
-        },
+            renderRight: (route, props) =>  {  }
+        }
     };
     componentWillMount(){
         this.props.pagesFetch();
@@ -41,7 +37,7 @@ class PageList extends Component {
         });
 
         this.dataSource = ds.cloneWithRows(pages);
-    }xx
+    }
 
     renderRow (rowData, sectionID) {
         return (
