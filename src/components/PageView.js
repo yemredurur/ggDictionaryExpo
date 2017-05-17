@@ -6,24 +6,25 @@ import  { pageUpdate, pageSave, pageDelete } from '../actions';
 import { Card, CardSection, Button, Confirm } from './common';
 import { Avatar } from 'react-native-elements';
 import { Foundation } from '@expo/vector-icons';
+import { withNavigation } from '@expo/ex-navigation';
 
-/*
-@connect()
+@withNavigation
 class EditButton extends Component {
+    constructor(props) {
+        super(props)
+    }
     goToPageEdit(page){
         this.props.navigator.push('pageEdit', {page: page } );
     }
     render() {
         const pageItem = this.props.page;
         return (
-            <TouchableOpacity onPress={this.goToPageEdit({pageItem})}>
+            <TouchableOpacity onPress={() => this.goToPageEdit(pageItem)}>
                 <Foundation style={styles.pageEditIcon} size={24} name="page-edit" />
             </TouchableOpacity>
         );
     }
 }
-@connect()
-*/
 
 class PageView extends Component {
     state = { showModal: false };
@@ -33,25 +34,9 @@ class PageView extends Component {
             title: '10:30',
             tintColor: '#000',
             color: '#000',
-            renderRight: (route, props) =>  (
-                <TouchableOpacity onPress={() => console.log(props,route) }>
-                    <Foundation style={styles.pageEditIcon} size={24} name="page-edit" />
-                </TouchableOpacity>
-            )
+            renderRight: (route, props) =>  <EditButton page={route.params.page} />
         }
     };
-
-    goToPageEdit(page){
-        this.props.navigator.push('pageEdit', {page: page } );
-    }
-    renderEditButton(){
-        const pageItem = this.props.page;
-        return (
-            <TouchableOpacity onPress={this.goToPageEdit({pageItem})}>
-                <Foundation style={styles.pageEditIcon} size={24} name="page-edit" />
-            </TouchableOpacity>
-        );
-    }
 
     componentWillMount() {
         _.each(this.props.page, (value, prop) => {
