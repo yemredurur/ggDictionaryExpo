@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import  { pageUpdate, pageSave, pageDelete } from '../actions';
 import { CardSection, Confirm } from './common';
 import PageForm from './PageForm';
-import {Card, Button} from 'react-native-elements';
+import {Card, Grid, Col, Row, Button} from 'react-native-elements';
 
 class PageEdit extends Component {
     static route = {
@@ -58,23 +58,23 @@ class PageEdit extends Component {
             <ScrollView>
             <Card>
                 <PageForm />
-                <View style={{ width: '100%', flexWrap: 'wrap', flexDirection: 'row', alignSelf: 'center', margin: 20 }}>
-                    <View style={{flexDirection: 'column', width: '50%'}}>
+                <Grid>
+                    <Col>
                         <Button style={styles.buttonWith} icon={{name: 'save'}}
-                            onPress={this.onButtonPress.bind(this)} large backgroundColor="#0654ba" title="Kaydet" />
-                    </View>
-                    <View style={{flexDirection: 'column', width: '50%'}}>
+                                onPress={this.onButtonPress.bind(this)} large backgroundColor="#0654ba" title="Kaydet" />
+                    </Col>
+                    <Col>
                         <Button style={styles.buttonWith} icon={{name: 'delete'}}
-                            onPress={this.fireEmployee.bind(this)} large backgroundColor="#dd1e31" title="Sil" />
-                    </View>
-                </View>
+                                onPress={this.fireEmployee.bind(this)} large backgroundColor="#dd1e31" title="Sil" />
+                    </Col>
+                </Grid>
 
                 <Confirm
                     visible={this.state.showModal}
                     onAccept={this.onAccept.bind(this)}
                     onDecline={this.onDecline.bind(this)}
                 >
-                    Are you sure you want to delete this page?
+                    Bu sayfayı silmek istediğinize emin misiniz?
                 </Confirm>
             </Card>
             </ScrollView>

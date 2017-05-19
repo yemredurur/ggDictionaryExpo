@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, View, Modal } from 'react-native';
 import { CardSection } from './CardSection';
-import { Button } from './Button';
+import {Grid, Col, Row, Button} from 'react-native-elements';
 
 const Confirm = ({ children, visible, onAccept, onDecline }) => {
     const {cardSectionStyle, textStyle, containerStyle} = styles;
@@ -13,13 +13,19 @@ const Confirm = ({ children, visible, onAccept, onDecline }) => {
             onRequestClose={() => {} }
         >
             <View style={containerStyle}>
-                <CardSection style={cardSectionStyle}>
-                    <Text style={textStyle}>{children}</Text>
-                </CardSection>
-                <CardSection>
-                    <Button onPress={onAccept}>Yes</Button>
-                    <Button onPress={onDecline}>No</Button>
-                </CardSection>
+                <Grid style={cardSectionStyle}>
+                    <Row>
+                        <Text style={textStyle}>{children}</Text>
+                    </Row>
+                    <Row>
+                        <Col>
+                            <Button onPress={onAccept} icon={{name: 'check'}}  backgroundColor="#5ba71b" title="Evet" />
+                        </Col>
+                        <Col>
+                            <Button onPress={onDecline} icon={{name: 'cancel'}}  backgroundColor="#dd1e31" title="Hayır" />
+                        </Col>
+                    </Row>
+                </Grid>
             </View>
         </Modal>
     );
@@ -28,7 +34,9 @@ const Confirm = ({ children, visible, onAccept, onDecline }) => {
 
 const styles = {
     cardSectionStyle: {
-        justifyContent: 'center'
+        backgroundColor: '#fff',
+        justifyContent: 'center',
+        height: 120
     },
     textStyle: {
         flex:1,
