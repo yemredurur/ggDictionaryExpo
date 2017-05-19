@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import _ from 'lodash';
 import  { pageUpdate, pageCreate } from '../actions';
 import { CardSection } from './common';
 import PageForm from './PageForm';
@@ -13,6 +14,12 @@ class PageCreate extends Component {
             color: '#000'
         }
     };
+
+    componentWillMount() {
+        _.each(this.props.page, (value, prop) => {
+            this.props.pageUpdate({ prop, null });
+        });
+    }
 
     componentWillReceiveProps(nextProps){
         if (nextProps.created) {
