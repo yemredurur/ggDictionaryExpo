@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
 import { connect } from 'react-redux';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { ScrollView, View, Text, TouchableOpacity } from 'react-native';
 import  { pageUpdate, pageSave, pageDelete } from '../actions';
 import { Card, CardSection, Button, Confirm } from './common';
-import { Avatar } from 'react-native-elements';
+import { Avatar, Icon } from 'react-native-elements';
 import { Foundation } from '@expo/vector-icons';
 import { withNavigation } from '@expo/ex-navigation';
 
@@ -19,9 +19,7 @@ class EditButton extends Component {
     render() {
         const pageItem = this.props.page;
         return (
-            <TouchableOpacity onPress={() => this.goToPageEdit(pageItem)}>
-                <Foundation style={styles.pageEditIcon} size={24} name="page-edit" />
-            </TouchableOpacity>
+            <Icon iconStyle={styles.pageEditIcon} size={24} type="foundation" name="page-edit" onPress={() => this.goToPageEdit(pageItem)} />
         );
     }
 }
@@ -61,7 +59,9 @@ class PageView extends Component {
                     <Text style={styles.pageTitle}>{title}</Text>
                 </View>
                 <View style={styles.descContainer}>
-                    <Text>{description}</Text>
+                    <ScrollView>
+                        <Text>{description}</Text>
+                    </ScrollView>
                 </View>
             </View>
         )

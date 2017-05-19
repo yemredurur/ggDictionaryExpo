@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, Picker } from 'react-native';
 import { CardSection, Input, Button } from './common';
 import { connect } from 'react-redux';
-import {Card} from 'react-native-elements';
+import { Card } from 'react-native-elements';
 import  { pageUpdate, pageCreate } from '../actions';
 
 class PageForm extends Component {
