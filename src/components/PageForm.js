@@ -4,6 +4,7 @@ import { CardSection, Input, Button } from './common';
 import { connect } from 'react-redux';
 import { Card } from 'react-native-elements';
 import  { pageUpdate, pageCreate } from '../actions';
+import {Select, Option} from "react-native-chooser";
 
 class PageForm extends Component {
     static route = {
@@ -32,18 +33,23 @@ class PageForm extends Component {
                     onChangeText={value => this.props.pageUpdate({ prop: 'description', value })}
                 />
 
-                <CardSection>
-                    <Text style={styles.pickerLabelStyle}>Page Type</Text>
-                    <Picker
-                        selectedValue={this.props.type}
-                        onValueChange={value => this.props.pageUpdate({ prop: 'type', value })}
-                        style={{ flex: 1, flexDirection: 'column'  }}
+                <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+                    <Select
+                        onSelect = {value => this.props.pageUpdate({ prop: 'type', value })}
+                        defaultText  = "Select Me Please"
+                        style = {{borderWidth : 1, borderColor : "#dddddd"}}
+                        textStyle = {{fontSize: 14}}
+                        selected={this.props.type}
+                        backdropStyle  = {{backgroundColor : "#fff"}}
+                        optionListStyle = {{backgroundColor : "#F5FCFF", height: 160}}
                     >
-                        <Picker.Item label="Error List" value="Error" />
-                        <Picker.Item label="Dictionary" value="Dictionary" />
-                        <Picker.Item label="To Do List" value="TodoList" />
-                    </Picker>
-                </CardSection>
+                        <Option value = "Error">Error List</Option>
+                        <Option value = "Dictionary">Dictionary</Option>
+                        <Option value = "TodoList">To Do List</Option>
+                        <Option value = "Notes">Notes</Option>
+
+                    </Select>
+                </View>
             </View>
         )
     }

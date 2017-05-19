@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { ScrollView } from 'react-native';
 import _ from 'lodash';
 import { connect } from 'react-redux';
 /*import Communications from 'react-native-communications';*/
@@ -55,6 +56,7 @@ class PageEdit extends Component {
 
     render() {
         return (
+            <ScrollView>
             <Card>
                 <PageForm />
                 <CardSection>
@@ -77,6 +79,7 @@ class PageEdit extends Component {
                     Are you sure you want to delete this page?
                 </Confirm>
             </Card>
+            </ScrollView>
         )
     }
 }
