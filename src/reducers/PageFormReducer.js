@@ -10,7 +10,8 @@ const INITIAL_STATE = {
     title: '',
     description: '',
     type: '',
-    saved: false
+    saved: false,
+    created: false
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -18,7 +19,7 @@ export default (state = INITIAL_STATE, action) => {
         case PAGE_UPDATE:
             return {...state, [action.payload.prop]: action.payload.value };
         case PAGE_CREATE:
-            return INITIAL_STATE;
+            return { ...state, ...INITIAL_STATE, created: true };
         case PAGES_FETCH_SUCCESS:
             return INITIAL_STATE;
         case PAGE_DELETE_SUCCESS:

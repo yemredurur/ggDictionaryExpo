@@ -5,24 +5,7 @@ import { ScrollView, View, Text, TouchableOpacity } from 'react-native';
 import  { pageUpdate, pageSave, pageDelete } from '../actions';
 import { Card, CardSection, Button, Confirm } from './common';
 import { Avatar, Icon } from 'react-native-elements';
-import { Foundation } from '@expo/vector-icons';
-import { withNavigation } from '@expo/ex-navigation';
-
-@withNavigation
-class EditButton extends Component {
-    constructor(props) {
-        super(props)
-    }
-    goToPageEdit(page){
-        this.props.navigator.push('pageEdit', {page: page } );
-    }
-    render() {
-        const pageItem = this.props.page;
-        return (
-            <Icon iconStyle={styles.pageEditIcon} size={24} type="foundation" name="page-edit" onPress={() => this.goToPageEdit(pageItem)} />
-        );
-    }
-}
+import EditButton from './navigation-buttons/EditButton';
 
 class PageView extends Component {
     state = { showModal: false };
@@ -107,11 +90,6 @@ const styles = {
     description: {
         fontSize: 14,
         lineHeight: 16
-    },
-    pageEditIcon: {
-        color: '#00a8d8',
-        paddingRight: 10,
-        paddingTop: 10
     }
 };
 

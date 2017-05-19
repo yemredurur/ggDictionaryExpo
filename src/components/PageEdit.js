@@ -8,8 +8,6 @@ import { CardSection, Confirm } from './common';
 import PageForm from './PageForm';
 import {Card, Button} from 'react-native-elements';
 
-
-
 class PageEdit extends Component {
     static route = {
         navigationBar: {

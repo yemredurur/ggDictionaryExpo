@@ -6,6 +6,7 @@ import { pagesFetch, logoutUser } from '../actions';
 import { Spinner} from './common';
 import { List, ListItem , SearchBar, Button } from 'react-native-elements';
 import LogOutButton from './navigation-buttons/LogOutButton';
+import NewPageButton from './navigation-buttons/NewPageButton';
 
 class PageList extends Component {
     static route = {
@@ -13,7 +14,7 @@ class PageList extends Component {
             title: 'Sayfa Listesi',
             tintColor: '#000',
             color: '#000',
-            renderRight: (route, props) =>  {  }
+            renderRight: (route, props) =>  <NewPageButton />
         }
     };
     componentWillMount(){

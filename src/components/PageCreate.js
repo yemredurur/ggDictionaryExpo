@@ -6,9 +6,18 @@ import PageForm from './PageForm';
 import {Card, Button} from 'react-native-elements';
 
 class PageCreate extends Component {
+    static route = {
+        navigationBar: {
+            title: 'Yeni Sayfa Oluştur',
+            tintColor: '#000',
+            color: '#000'
+        }
+    };
 
-    componentWillMount() {
-        //console.log('componentWillMount ');
+    componentWillReceiveProps(nextProps){
+        if (nextProps.created) {
+            this.props.navigator.push('pageList');
+        }
     }
 
     onButtonPress() {
@@ -20,15 +29,16 @@ class PageCreate extends Component {
         return (
             <Card>
                 <PageForm {...this.props} />
-                <Button buttonStyle={{marginTop: 20}} onPress={this.onButtonPress.bind(this)} large backgroundColor="#2c98f1" title="Create" />
+                <Button style={{marginTop: 20, width: "100%"}}  icon={{name: 'add'}}
+                        onPress={this.onButtonPress.bind(this)} large backgroundColor="#2c98f1" title="Ekle" />
             </Card>
         )
     }
 }
 
 const mapStateToProps = ({ pageForm }) => {
-    const { title, description, type } = pageForm;
-    return { title, description, type };
+    const { title, description, type, created } = pageForm;
+    return { title, description, type, created };
 };
 
 export default connect(mapStateToProps, {
