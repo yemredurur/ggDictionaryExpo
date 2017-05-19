@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { ScrollView } from 'react-native';
+import { ScrollView, View } from 'react-native';
 import _ from 'lodash';
 import { connect } from 'react-redux';
 /*import Communications from 'react-native-communications';*/
 import  { pageUpdate, pageSave, pageDelete } from '../actions';
-import { Card, CardSection, Button, Confirm } from './common';
+import { CardSection, Confirm } from './common';
 import PageForm from './PageForm';
+import {Card, Button} from 'react-native-elements';
 
 
 
@@ -59,17 +60,16 @@ class PageEdit extends Component {
             <ScrollView>
             <Card>
                 <PageForm />
-                <CardSection>
-                    <Button onPress={this.onButtonPress.bind(this)}>
-                        Save Changes
-                    </Button>
-                </CardSection>
-
-                <CardSection>
-                    <Button onPress={this.fireEmployee.bind(this)}>
-                        Delete Page
-                    </Button>
-                </CardSection>
+                <View style={{ width: '100%', flexWrap: 'wrap', flexDirection: 'row', alignSelf: 'center', margin: 20 }}>
+                    <View style={{flexDirection: 'column', width: '50%'}}>
+                        <Button style={styles.buttonWith} icon={{name: 'save'}}
+                            onPress={this.onButtonPress.bind(this)} large backgroundColor="#0654ba" title="Kaydet" />
+                    </View>
+                    <View style={{flexDirection: 'column', width: '50%'}}>
+                        <Button style={styles.buttonWith} icon={{name: 'delete'}}
+                            onPress={this.fireEmployee.bind(this)} large backgroundColor="#dd1e31" title="Sil" />
+                    </View>
+                </View>
 
                 <Confirm
                     visible={this.state.showModal}
@@ -84,6 +84,11 @@ class PageEdit extends Component {
     }
 }
 
+const styles = {
+    buttonWith : {
+        width: "100%"
+    }
+}
 
 const mapStateToProps = ({ pageForm }) => {
     const { title, description, type, saved } = pageForm;

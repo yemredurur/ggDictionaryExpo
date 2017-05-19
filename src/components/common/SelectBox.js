@@ -1,46 +1,40 @@
 import React from 'react';
 import { TextInput, View, Text }  from 'react-native';
 import { FormLabel, FormInput } from 'react-native-elements'
+import {Select, Option} from "react-native-chooser";
 
-
-const Input = ({ label, value, onChangeText, placeholder, secureTextEntry, multiline }) => {
-    const {inputStyle, labelStyle, containerStyle} = styles;
+const SelectBox = ({ label, onSelect, defaultText, style, textStyle, selected, backdropStyle, optionListStyle, selectionList }) => {
     return (
         <View>
             <FormLabel >
                 {label}
             </FormLabel>
-            <FormInput
-                secureTextEntry={secureTextEntry}
-                autoCorrect={false}
-                multiline = {multiline}
-                placeholder={placeholder}
-                value={value}
-                onChangeText={onChangeText}
+            <View style={styles.selectBoxContainer}>
+                <Select
+                    onSelect = {onSelect}
+                    defaultText  = {defaultText}
+                    style = {style}
+                    textStyle = {textStyle}
+                    selected={selected}
+                    backdropStyle  = {backdropStyle}
+                    optionListStyle = {optionListStyle}
+                >
+                    <Option value = "Error">Error List</Option>
+                    <Option value = "Dictionary">Dictionary</Option>
+                    <Option value = "TodoList">To Do List</Option>
+                    <Option value = "Notes">Notes</Option>
 
-            />
+                </Select>
+            </View>
         </View>
     )
 };
 
 const styles = {
-    inputStyle : {
-        color: '#000',
-        paddingRight: 5,
-        paddingLeft: 5,
-        fontSize: 18,
-        lineHeight: 23
-    },
-    labelStyle: {
-        fontSize: 18,
-        paddingLeft: 5
-    },
-    containerStyle: {
-        height: 40,
-        flex: 1,
-        flexDirection: 'row',
-        alignItems: 'center'
+    selectBoxContainer: {
+        width: "100%",
+        padding: 20
     }
-};
+}
 
-export { Input };
+export { SelectBox };

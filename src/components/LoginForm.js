@@ -45,7 +45,7 @@ class LoginForm extends Component {
             return <Spinner size="large" />;
         }
         return (
-            <Button onPress={this.onButtonPress.bind(this)} large backgroundColor="#2c98f1" title="Giriş Yap" />
+            <Button onPress={this.onButtonPress.bind(this)} large backgroundColor="#0654ba" title="Giriş Yap" />
         );
     }
 

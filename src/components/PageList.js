@@ -65,7 +65,7 @@ class PageList extends Component {
             return <Spinner size="large" />;
         }
         return (
-            <Button buttonStyle={{marginTop:20}} onPress={this.logoutUser.bind(this)} large backgroundColor="#2c98f1" title="Çıkış Yap" />
+            <Button buttonStyle={{marginTop:20}} onPress={this.logoutUser.bind(this)} large backgroundColor="#0654ba" title="Çıkış Yap" />
         );
     }
 

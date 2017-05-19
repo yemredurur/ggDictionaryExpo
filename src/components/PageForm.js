@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { View, Text, Picker } from 'react-native';
-import { CardSection, Input, Button } from './common';
+import { CardSection, Input, Button, SelectBox } from './common';
 import { connect } from 'react-redux';
 import { Card } from 'react-native-elements';
 import  { pageUpdate, pageCreate } from '../actions';
-import {Select, Option} from "react-native-chooser";
 
 class PageForm extends Component {
     static route = {
@@ -14,6 +13,13 @@ class PageForm extends Component {
             color: '#000',
         },
     };
+
+    componentWillMount(){
+        let defaultText = this.props.type;
+        if (defaultText == null) {
+            defaultText = 'Lütfen Seçiniz.'
+        }
+    }
 
     render() {
         return (
@@ -33,23 +39,16 @@ class PageForm extends Component {
                     onChangeText={value => this.props.pageUpdate({ prop: 'description', value })}
                 />
 
-                <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-                    <Select
-                        onSelect = {value => this.props.pageUpdate({ prop: 'type', value })}
-                        defaultText  = "Select Me Please"
-                        style = {{borderWidth : 1, borderColor : "#dddddd"}}
-                        textStyle = {{fontSize: 14}}
-                        selected={this.props.type}
-                        backdropStyle  = {{backgroundColor : "#fff"}}
-                        optionListStyle = {{backgroundColor : "#F5FCFF", height: 160}}
-                    >
-                        <Option value = "Error">Error List</Option>
-                        <Option value = "Dictionary">Dictionary</Option>
-                        <Option value = "TodoList">To Do List</Option>
-                        <Option value = "Notes">Notes</Option>
-
-                    </Select>
-                </View>
+                <SelectBox
+                    label="Sayfa Tipi"
+                    onSelect = {value => this.props.pageUpdate({ prop: 'type', value })}
+                    defaultText  = {this.defaultText}
+                    style = {{borderWidth : 1, borderColor : "#dddddd"}}
+                    textStyle = {{fontSize: 14}}
+                    selected={this.props.type}
+                    backdropStyle  = {{backgroundColor : "#fff"}}
+                    optionListStyle = {{backgroundColor : "#F5FCFF", height: 160}}
+                />
             </View>
         )
     }
