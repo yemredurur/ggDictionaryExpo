@@ -14,13 +14,6 @@ class PageForm extends Component {
         },
     };
 
-    componentWillMount(){
-        let defaultText = this.props.type;
-        if (defaultText == null) {
-            defaultText = 'Lütfen Seçiniz.'
-        }
-    }
-
     render() {
         return (
             <View>
@@ -42,7 +35,7 @@ class PageForm extends Component {
                 <SelectBox
                     label="Sayfa Tipi"
                     onSelect = {value => this.props.pageUpdate({ prop: 'type', value })}
-                    defaultText  = {this.defaultText}
+                    defaultText  = {this.props.type}
                     style = {{borderWidth : 1, borderColor : "#dddddd"}}
                     textStyle = {{fontSize: 14}}
                     selected={this.props.type}
