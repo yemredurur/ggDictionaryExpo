@@ -14,21 +14,21 @@ const INITIAL_STATE = {
     user: null,
     loading: false,
     success: false,
-    logout: false,
+    logout: false
 };
 
 export  default (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case EMAIL_CHANGED:
-            return { ...state, email: action.payload };
+            return { ...state, email: action.payload, logout: false };
         case PASSWORD_CHANGED:
-            return { ...state, password: action.payload };
+            return { ...state, password: action.payload, logout: false };
         case LOGIN_USER_SUCCESS:
-            return { ...state, ...INITIAL_STATE, user: action.payload, success: true };
+            return { ...state, ...INITIAL_STATE, user: action.payload, success: true, logout: false };
         case LOGIN_USER_FAIL:
             return { ...state, error: 'Authentication Failed', password: '', loading: false };
         case LOGIN_USER:
-            return { ...state, loading: true, error: ''};
+            return { ...state, loading: true, error: '', logout: false};
         case LOGOUT_USER:
             return { ...state, ...INITIAL_STATE, logout: true };
         default:

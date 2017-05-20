@@ -32,12 +32,12 @@ class PageList extends Component {
         }
     }
 
-    createDataSource({ pages }) {
+    createDataSource({ pageList }) {
         const ds = new ListView.DataSource({
             rowHasChanged: (r1, r2) => r1 !== r2
         });
 
-        this.dataSource = ds.cloneWithRows(pages);
+        this.dataSource = ds.cloneWithRows(pageList);
     }
 
     renderRow (rowData, sectionID) {
@@ -100,12 +100,14 @@ const styles = {
     }
 }
 
-const mapStateToProps = state => {
-    const pages = _.map(state.pages, (val, uid) => {
+
+const mapStateToProps = ({ pages, auth }) => {
+    const pageList = _.map(pages, (val, uid) => {
         return { ...val, uid };
     });
 
-    return { pages };
+    const { logout } = auth;
+    return { pageList, logout };
 };
 
 export default connect(mapStateToProps, {
