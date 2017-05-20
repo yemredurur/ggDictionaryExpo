@@ -3,7 +3,7 @@ import _ from 'lodash';
 import { ListView, View, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import { pagesFetch, logoutUser } from '../actions';
-import { Spinner} from './common';
+import { Spinner } from './common';
 import { List, ListItem , SearchBar, Button } from 'react-native-elements';
 import LogOutButton from './navigation-buttons/LogOutButton';
 import NewPageButton from './navigation-buttons/NewPageButton';
@@ -61,12 +61,18 @@ class PageList extends Component {
         this.props.logoutUser();
     }
 
-    renderButton() {
-        if (this.props.loading) {
-            return <Spinner size="large" />;
+    renderList() {
+        if (this.props.pageList.length == 0) {
+            return <Spinner style={styles.spinnerStyle} size="large" />;
         }
         return (
-            <Button buttonStyle={{marginTop:20}} onPress={this.logoutUser.bind(this)} large backgroundColor="#0654ba" title="Çıkış Yap" />
+            <List>
+                <ListView
+                    enableEmptySections
+                    dataSource={this.dataSource}
+                    renderRow={this.renderRow.bind(this)}
+                />
+            </List>
         );
     }
 
@@ -79,30 +85,22 @@ class PageList extends Component {
                         clearIcon
                         placeholder='Ara...' />
                 </View>
-                <List>
-                    <ListView
-                        enableEmptySections
-                        dataSource={this.dataSource}
-                        renderRow={this.renderRow.bind(this)}
-                    />
-                </List>
-                {this.renderButton()}
+                {this.renderList()}
+                <Button buttonStyle={{marginTop:20}} onPress={this.logoutUser.bind(this)} large backgroundColor="#0654ba" title="Çıkış Yap" />
             </View>
         )
     }
 }
 
 const styles = {
-    exitIcon: {
-        color: '#00a8d8',
-        paddingRight: 10,
-        paddingTop: 10
+    spinnerStyle: {
+        margin: 20
     }
 }
 
 
 const mapStateToProps = ({ pages, auth }) => {
-    const pageList = _.map(pages, (val, uid) => {
+    const pageList = _.map(pages.pageList, (val, uid) => {
         return { ...val, uid };
     });
 
