@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import { View } from 'react-native';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 import  { pageUpdate, pageCreate } from '../actions';
 import { CardSection } from './common';
 import PageForm from './PageForm';
-import {Card, Button} from 'react-native-elements';
+import {Button} from 'react-native-elements';
 
 class PageCreate extends Component {
     static route = {
@@ -34,11 +35,11 @@ class PageCreate extends Component {
 
     render() {
         return (
-            <Card>
-                <PageForm {...this.props} />
+            <View>
+                <PageForm />
                 <Button style={{marginTop: 20, width: "100%"}}  icon={{name: 'add'}}
                         onPress={this.onButtonPress.bind(this)} large backgroundColor="#2c98f1" title="Ekle" />
-            </Card>
+            </View>
         )
     }
 }

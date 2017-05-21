@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { Text } from 'react-native';
+import { Text, View } from 'react-native';
 import firebase from 'firebase';
 import { connect } from 'react-redux';
 import { emailChanged, passwordChanged, loginUser } from '../actions';
-import {CardSection, Input, Spinner} from './common';
-import {Card, Button} from 'react-native-elements';
+import { Input, Spinner} from './common';
+import {Button} from 'react-native-elements';
 import { Router, Store } from '../app';
 
 class LoginForm extends Component {
@@ -51,7 +51,7 @@ class LoginForm extends Component {
 
     render() {
         return (
-            <Card>
+            <View>
                 <Input
                     label="E-mail"
                     placeholder="email@gmail.com"
@@ -71,7 +71,7 @@ class LoginForm extends Component {
                 </Text>
 
                 {this.renderButton()}
-            </Card>
+            </View>
         )
     }
 }

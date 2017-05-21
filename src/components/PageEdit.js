@@ -4,9 +4,9 @@ import _ from 'lodash';
 import { connect } from 'react-redux';
 /*import Communications from 'react-native-communications';*/
 import  { pageUpdate, pageSave, pageDelete } from '../actions';
-import { CardSection, Confirm } from './common';
+import { Confirm } from './common';
 import PageForm from './PageForm';
-import {Card, Grid, Col, Row, Button} from 'react-native-elements';
+import { Grid, Col, Row, Button} from 'react-native-elements';
 
 class PageEdit extends Component {
     static route = {
@@ -56,7 +56,7 @@ class PageEdit extends Component {
     render() {
         return (
             <ScrollView>
-            <Card>
+            <View>
                 <PageForm />
                 <Grid>
                     <Col>
@@ -76,7 +76,7 @@ class PageEdit extends Component {
                 >
                     Bu sayfayı silmek istediğinize emin misiniz?
                 </Confirm>
-            </Card>
+            </View>
             </ScrollView>
         )
     }
