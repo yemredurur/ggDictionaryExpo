@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, Image, Animated, Dimensions } from 'react-native';
 import firebase from 'firebase';
 import { connect } from 'react-redux';
 import { emailChanged, passwordChanged, loginUser } from '../actions';
 import { Input, Spinner} from './common';
-import {Button} from 'react-native-elements';
 import { Router, Store } from '../app';
+import {Button} from 'react-native-elements';
+
+const SCREEN_WIDTH = Dimensions.get('window').width;
+const SCREEN_HEIGHT = Dimensions.get('window').height;
+const ANIMATION_DURATION = 1500;
 
 class LoginForm extends Component {
     /**
@@ -20,6 +24,16 @@ class LoginForm extends Component {
             color: '#000',
         },
     };
+
+    componentWillMount() {
+        const x = Math.round((SCREEN_WIDTH / 2)-80);
+        const y = Math.round((SCREEN_HEIGHT / 2)-25);
+        this.position = new Animated.ValueXY({ x: x, y: y});
+        Animated.timing(this.position, {
+            toValue: { x: Math.round((SCREEN_WIDTH / 2)-80), y: 0 },
+            duration: ANIMATION_DURATION
+        }).start();
+    }
 
     componentWillReceiveProps(nextProps){
         if (nextProps.success) {
@@ -52,6 +66,13 @@ class LoginForm extends Component {
     render() {
         return (
             <View>
+                <Animated.View style={this.position.getLayout()}>
+                    <Image
+                        defaultSource={require('../assets/gglogo.png')}
+                        source={{ cache: 'only-if-cached' }}
+                        style={styles.imgStyle}
+                    />
+                </Animated.View>
                 <Input
                     label="E-mail"
                     placeholder="email@gmail.com"
@@ -81,6 +102,13 @@ const styles = {
         fontSize: 20,
         alignSelf: 'center',
         color: 'red'
+    },
+    imgStyle: {
+        width: 160,
+        height: 50,
+        backgroundColor: 'white',
+        marginBottom: 20,
+        marginTop: 20
     }
 };
 
