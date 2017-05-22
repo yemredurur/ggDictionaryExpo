@@ -38,7 +38,7 @@ class PageCreate extends Component {
             <View>
                 <PageForm />
                 <Button style={{marginTop: 20, width: "100%"}}  icon={{name: 'add'}}
-                        onPress={this.onButtonPress.bind(this)} large backgroundColor="#2c98f1" title="Ekle" />
+                        onPress={this.onButtonPress.bind(this)} large backgroundColor="#0654ba" title="Ekle" />
             </View>
         )
     }

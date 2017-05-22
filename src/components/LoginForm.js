@@ -10,29 +10,27 @@ import {Button} from 'react-native-elements';
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const SCREEN_HEIGHT = Dimensions.get('window').height;
 const ANIMATION_DURATION = 1500;
+const FADEIN_DURATION = 1500;
 
 class LoginForm extends Component {
-    /**
-     * This is where we can define any route configuration for this
-     * screen. For example, in addition to the navigationBar title we
-     * could add backgroundColor.
-     */
-    static route = {
-        navigationBar: {
-            title: 'Giriş Yap',
-            tintColor: '#000',
-            color: '#000',
-        },
-    };
-
     componentWillMount() {
         const x = Math.round((SCREEN_WIDTH / 2)-80);
         const y = Math.round((SCREEN_HEIGHT / 2)-25);
+
         this.position = new Animated.ValueXY({ x: x, y: y});
+        this.fadeAnim = new Animated.Value(0);
+
         Animated.timing(this.position, {
             toValue: { x: Math.round((SCREEN_WIDTH / 2)-80), y: 0 },
             duration: ANIMATION_DURATION
-        }).start();
+        }).start(() => {
+
+            Animated.timing(this.fadeAnim, {
+                toValue: 1,
+                duration: FADEIN_DURATION,
+                delay: 300
+            }).start();
+        });
     }
 
     componentWillReceiveProps(nextProps){
@@ -65,39 +63,53 @@ class LoginForm extends Component {
 
     render() {
         return (
-            <View>
-                <Animated.View style={this.position.getLayout()}>
-                    <Image
-                        defaultSource={require('../assets/gglogo.png')}
-                        source={{ cache: 'only-if-cached' }}
-                        style={styles.imgStyle}
-                    />
-                </Animated.View>
-                <Input
-                    label="E-mail"
-                    placeholder="email@gmail.com"
-                    onChangeText={this.onEmailChange.bind(this)}
-                    value={this.props.email}
-                />
-                <Input
-                    secureTextEntry
-                    label="Password"
-                    placeholder="password"
-                    onChangeText={this.onPasswordChange.bind(this)}
-                    value={this.props.password}
-                />
+            <View style={styles.mainContainer}>
+                <View style={styles.contentContainer}>
+                    <Animated.View style={this.position.getLayout()}>
+                        <Image
+                            defaultSource={require('../assets/gglogo.png')}
+                            source={{ cache: 'only-if-cached' }}
+                            style={styles.imgStyle}
+                        />
+                    </Animated.View>
+                    <Animated.View style={{opacity: this.fadeAnim}}>
+                        <Input
+                            label="E-mail"
+                            placeholder="email@gmail.com"
+                            onChangeText={this.onEmailChange.bind(this)}
+                            value={this.props.email}
+                        />
+                        <Input
+                            secureTextEntry
+                            label="Password"
+                            placeholder="password"
+                            onChangeText={this.onPasswordChange.bind(this)}
+                            value={this.props.password}
+                        />
 
-                <Text style={styles.errorTextStyle}>
-                    {this.props.error}
-                </Text>
+                        <Text style={styles.errorTextStyle}>
+                            {this.props.error}
+                        </Text>
 
-                {this.renderButton()}
+                        {this.renderButton()}
+                    </Animated.View>
+                </View>
             </View>
         )
     }
 }
 
 const styles = {
+    contentContainer: {
+        height: 400,
+        width: "100%"
+    },
+    mainContainer: {
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
     errorTextStyle: {
         fontSize: 20,
         alignSelf: 'center',
@@ -108,7 +120,7 @@ const styles = {
         height: 50,
         backgroundColor: 'white',
         marginBottom: 20,
-        marginTop: 20
+        marginTop: 40
     }
 };
 
