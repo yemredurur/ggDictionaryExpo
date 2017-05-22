@@ -94,7 +94,7 @@ class PageList extends Component {
 
 const styles = {
     spinnerStyle: {
-        margin: 20
+        padding: 20
     }
 }
 
