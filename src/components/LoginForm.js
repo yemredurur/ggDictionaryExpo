@@ -111,6 +111,7 @@ const styles = {
         alignItems: 'center'
     },
     errorTextStyle: {
+        padding: 10,
         fontSize: 20,
         alignSelf: 'center',
         color: 'red'
