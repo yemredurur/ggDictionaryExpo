@@ -101,7 +101,6 @@ class LoginForm extends Component {
 
 const styles = {
     contentContainer: {
-        height: 400,
         width: "100%"
     },
     mainContainer: {
